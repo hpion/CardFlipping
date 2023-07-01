@@ -15,7 +15,7 @@ import java.lang.Math;
  {
    
    private int suit;                   // suit value of the card, 1 for diamonds, 2 for hearts, 3 for spades, 4 for clubs
-   private int value;                  // face value of card from 1 to 12, negative values indicate card is facedown, ace is 1, jack is 10, queen is 11, king is 12
+   private int value;                  // face value of card from 1 to 13, negative values indicate card is facedown, T is 10, ace is 1, jack is 11, queen is 12, king is 13
    private CardListNode next;          // next card in the list
     
    // default constructor
@@ -32,13 +32,17 @@ import java.lang.Math;
             this.value = 1;
             break;
          case 'J':
-            this.value = 10;
-            break;
-         case 'Q':
             this.value = 11;
             break;
-         case 'K':
+         case 'Q':
             this.value = 12;
+            break;
+         case 'K':
+            this.value = 13;
+            break;
+         case 'T':
+            this.value = 10;
+            break;
          default:
             this.value = card.charAt(2) - 48;
             break;
@@ -123,18 +127,21 @@ import java.lang.Math;
          case 1:
             card = card + 'A';
             break;
-         case 10:
+         case 11:
             card = card + 'J';
             break;
-         case 11:
+         case 12:
             card = card + 'Q';
             break;
-         case 12:
+         case 13:
             card = card + 'K';
+            break;
+         case 10:
+            card = card + 'T';
+            break;
          default:
             card = card + Math.abs(this.value);
       }
-
       return card;
 
    }

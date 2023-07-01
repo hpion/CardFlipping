@@ -29,7 +29,7 @@ public class CardFlipping {
             rows++;
             input.nextLine();
         }
-        input.reset();
+        input = new Scanner(new File("input.txt"));
         int columns = 0;
         Scanner lineScnr = new Scanner(input.nextLine());
         while (lineScnr.hasNext())
@@ -37,7 +37,7 @@ public class CardFlipping {
             columns++;
             lineScnr.next();
         }
-        input.reset();
+        input = new Scanner(new File("input.txt"));
 
         // create array of CardLists from input
         CardList[][] cardArray = new CardList[rows][columns];
@@ -52,5 +52,56 @@ public class CardFlipping {
                 cardArray[i][j].addCard(lineScnr.next());
             }
         }
+
+        // flip the top half of the cards onto the bottom half of the cards until only one row remains
+        // if there are an odd number of rows, ignore the center row
+        while (rows > 1)
+        {
+            int removedRows = rows / 2;
+            for (int i = 0; i < (removedRows); i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    cardArray[i][j].flip(cardArray[rows - 1 - i][j]);
+                }
+            }
+            rows -= removedRows;
+            // create new cardArray
+            CardList[][] oldArray = cardArray;
+            cardArray = new CardList[rows][columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    cardArray[i][j] = oldArray[i + removedRows][j];
+                }
+            }
+        }
+
+        // flip the left half of the cards onto the right half of the cards until only one column remains
+        // if there are an odd number of columns, ignore the center column
+        while (columns > 1)
+        {
+            int removedColumns = columns / 2;
+            for (int i = 0; i < removedColumns; i++)
+            {
+                cardArray[0][i].flip(cardArray[0][columns - 1 - i]);
+            }
+            columns -= removedColumns;
+
+            // create new cardArray
+            CardList[][] oldArray = cardArray;
+            cardArray = new CardList[1][columns];
+            for (int j = 0; j < columns; j++)
+            {
+                cardArray[0][j] = oldArray[0][j + removedColumns];
+            }
+        }
+
+        // create an output.txt file with the final deck
+        String output = cardArray[0][0].toString();
+        FileWriter outputWriter = new FileWriter("output.txt");
+        outputWriter.write(output);
+        outputWriter.close();
     }
 }

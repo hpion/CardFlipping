@@ -13,7 +13,6 @@ public class CardList
 {
     private CardListNode head;
     private CardListNode tail;
-    private int length;
 
     // default constructor
     public CardList()
@@ -21,37 +20,41 @@ public class CardList
         head = new CardListNode();
         tail = new CardListNode();
         head.setNext(tail);
-        length = 0;
-    }
-
-    // add new card
-    public void addCard(CardListNode newCard)
-    {
-        //set newCard.next to the first card in the list then set head.next to newCard
-
-        newCard.setNext(head.getNext());
-        head.setNext(newCard);
-        length += 1;
     }
 
     //add new card from string
     public void addCard(String newCard)
     {
         CardListNode newNode = new CardListNode(newCard);
-        addCard(newNode);
+        newNode.setNext(head.getNext());
+        head.setNext(newNode);
     }
 
     // flip list onto another list
     public void flip(CardList newList)
     {
-        CardListNode current = head.getNext();
+        CardListNode current = head;
         // flip each card in cardList onto newList
-        for (int i = 0; i < this.length; i++)
+        while (current.getNext() != tail)
         {
             //flip card and add it to newList, then set current to the next card
+            current = current.getNext();
             current.flip();
-            newList.addCard(current);
+            newList.addCard(current.getCard());
+        }
+    }
+
+    // print list as a string of cards
+    public String toString()
+    {
+        CardListNode current = head.getNext();
+        String output = current.getCard();
+        // get each card as a string septerated by spaces
+        while(current.getNext() != tail)
+        {
+            output = output + " " + current.getCard();
             current = current.getNext();
         }
+        return output;
     }
 }
