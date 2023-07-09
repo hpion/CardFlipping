@@ -13,7 +13,8 @@ for tens, jacks, queens, kings, or aces respectively.
 
 For example a face up ten of spades would be represented by the string, "UST", a face down 9 of diamonds would be represented as, "DD9", and a face up ace of hearts would be represented as, "UHA".
 
-Cards should be provided as an array using a single space to seperate columns and a new line to seperate rows. For an example of this see the provided 'input.txt' file.
+Cards should be provided as an array using a single space to seperate columns and a new line to seperate rows. The array must include an equal number of cards in each row.
+For an example of this see the provided 'input.txt' file.
 
 Output
 Output will be provided as an 'output.txt' file in the same directory as the batch file. The output will contain a list of the cards in the final deck from the top down.
