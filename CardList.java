@@ -48,13 +48,14 @@ public class CardList
     public String toString()
     {
         CardListNode current = head.getNext();
-        String output = current.getCard();
+        String output = "";
         // get each card as a string septerated by spaces
-        while(current.getNext() != tail)
+        while(current != tail)
         {
             output = output + " " + current.getCard();
             current = current.getNext();
         }
+        output = output.substring(1);
         return output;
     }
 }
