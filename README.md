@@ -6,7 +6,7 @@ of the array onto the right half of the array until only one stack of cards is l
 The status of cards as face up or face down is accounted for by the program.
 
 Input
-Input should be provided as an 'input.txt' file in the same directory as the executable.
+Input should be provided as an 'input.txt' file in the same directory as the batch file.
 Cards should be entered as a three character string, the first character should be either 'U' or 'D' and indicates whether the card is face up or face down,
 the second character should be 'C', 'D', 'H', or 'S' and indicates the suit of the card, the third character should be an integer from 2 to 9, or 'T', 'J', 'Q', 'K', or, 'A'
 for tens, jacks, queens, kings, or aces respectively.
@@ -16,5 +16,5 @@ For example a face up ten of spades would be represented by the string, "UST", a
 Cards should be provided as an array using a single space to seperate columns and a new line to seperate rows. For an example of this see the provided 'input.txt' file.
 
 Output
-Output will be provided as an 'output.txt' file in the same directory as the executable. The output will contain a list of the cards in the final deck from the top down.
+Output will be provided as an 'output.txt' file in the same directory as the batch file. The output will contain a list of the cards in the final deck from the top down.
 Cards will be printed in the same format as they are input.
